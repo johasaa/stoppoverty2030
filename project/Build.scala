@@ -11,12 +11,12 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaEbean,
+    "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here 
-    "postgresql" % "postgresql" % "9.1-901-1.jdbc4"     
+    // Add your own project settings here        
   )
 
 }
