@@ -1,0 +1,21 @@
+@(signNoFBForm: Form[Application.SignNoFacebook])(title: String)
+
+@import helper._
+
+    @form(action = routes.Application.saveSignature, args = 'id -> "signNoFBForm") {
+        
+        @inputText(
+            field = signNoFBForm("firstName"),
+            args = '_label -> "First Name:", 'placeholder -> "First Name"
+        )
+        
+        @inputText(
+            field = signNoFBForm("lastName"),
+            args = '_label -> "Last Name:", 'placeholder -> "Last Name"
+        )
+        
+        <div>
+        <a href="#" class="btn btn-primary">Sign now</a>
+        </div>
+        
+    }
