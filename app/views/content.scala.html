@@ -1,8 +1,8 @@
-@(counter: Integer)
+@(counter: String)
 
 <div class="container">
 			<div class="row-fluid">				
-				<div class="span4 imgheader">
+				<div class="span3 imgheader">
 					<img src="@routes.Assets.at("images/stoppoverty_ny.jpg")"/>                                
 				</div>	
 			</div>
@@ -10,8 +10,8 @@
 				<div class="span7 subheader">
 					<b>Eradicate absolute poverty by 2030</b>
 				</div>			
-				<div class="span5">
-					<div class="row-fluid counter">@counter</div>
+				<div class="row-fluid">
+					<div class="counter">@counter</div>
 				</div>
 			</div>
 			<div class="row-fluid">
@@ -19,12 +19,12 @@
 					<button class="signup" >Sign the Stop Poverty petition</button>
 				</div>
 			</div>
-			<div class="row-fluid">
+			<div class="row-fluid visible-desktop">
 				<div class="span3" >
 					<img src="@routes.Assets.at("images/instagram-logo.jpg")"  width="25%"/>
 					<b class="instagram">#stoppoverty</b>
 				</div>
-				<div class="span6">
+				<div class="span6 ">
 					<!-- SnapWidget -->					
 					<iframe src="http://snapwidget.com/in/?h=c3RvcHBvdmVydHl8aW58MTAwfDV8MXx8eWVzfDV8bm9uZQ==" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:575px; height: 115px" ></iframe>	
 					<!-- SnapWidget -->

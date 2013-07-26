@@ -1,12 +1,14 @@
+@import url(http://fonts.googleapis.com/css?family=EB+Garamond);
 @font-face {
 	font-family: 'digi';
-	src: url('http://cssdeck.com/uploads/resources/fonts/digii/DS-DIGII.TTF');
+	src: url('DS-DIGII.TTF');
 }
+	
+	
 
-@import url(http://fonts.googleapis.com/css?family=EB+Garamond);
 
 html, body {
-	width: 100%;
+	width: 100%;	
 	height: 100%;
 	font-size: 100%;
 }
@@ -21,13 +23,34 @@ body {
 	font-family: Garamond, EB Garamond;
 }
 
-.container-fluid {
-	background: white;
-	margin-left: 1em;
-	margin-right: 1em;
+@media only screen and (max-width: 400px) {
+    body { font-size:90%;}
+}
+ 
+@media only screen and (max-width: 1100px) {
+    body { font-size:120%;}
+}  
+
+@media only screen and (min-width: 1100px) {
+    body { font-size:120%;}
+    .wrap {max-width:770px;}
+} 
+
+@media (max-width: 768px) {
+	body { font-size: 90%; }
+	.signup {
+		width: auto;
+		line-height: 100%;
+		font-size: 4em;
+	}
+	.counter {width: auto;}
 }
 
-.container{
+.container {
+	background: white;
+}
+
+.container-fluid{
 	background: white;
 	margin-left: 1em;
 	margin-right: 1em;
@@ -40,27 +63,21 @@ body {
 
 .signup {
 	background: #B9B7B1;
-	background-image: radial-gradient(
-		center 0,
-		white,
-		#B9B7B1
-	);
-	font-size: 2em;
-	display: block;
+	font-size: 1.75em;
 	float: left;
-	clear: both;
 	color: black;
 	margin: 0.5em;
-	padding: 0.75em;	
+	padding: 0.5em;	
 }
 
 .counter{
 	font-family: 'digi';
-	font-size: 6vw;
+	font-size: 3.5em;
 	display: block;
 	clear: both;
 	background-image: -webkit-linear-gradient(#E54B6B, white);
 	padding: 0.3em;
+	margin: 0.1em;
 }
 
 a {
@@ -68,11 +85,11 @@ a {
 }
 
 li {
-	padding-top: 1.0em;
+	padding-top: 2em;
 }
 
 .subheader{
-	font-size: 2.5em;
+	font-size: 1.5em;
 	margin: 0.3em;
 	padding: 0.5em;
 }
@@ -85,10 +102,13 @@ li {
 	padding-bottom: 0.5em;
 }
 
+img { max-width: 100%; height: auto; }
+
 .imgheader {
 	margin: 1em;
 	padding: 1em;
 	display: block;
+	
 }
 
 .text-content {
