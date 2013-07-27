@@ -28,18 +28,16 @@ body {
 }
  
 @media only screen and (max-width: 1100px) {
-    body { font-size:120%;}
-    img { width: 50%; height: auto; float: center;}
-}  
+    body { font-size:120%;}    
+}
 
 @media only screen and (min-width: 1100px) {
     body { font-size:120%;}
     .wrap {max-width:770px;}
-  	
 } 
 
 @media (max-width: 768px) {
-	body { font-size: 90%; }
+	body { font-size: 95%; }
 	.signup {
 		width: auto;		
 		font-size: 4em;
@@ -63,7 +61,7 @@ body {
 	height: 600px;
 }
 
-.signup {
+a.signup {
 	background: #B9B7B1;
 	font-size: 1.75em;
 	line-height: 100%;
@@ -75,12 +73,10 @@ body {
 
 .counter{
 	font-family: 'digi';
-	font-size: 3.5em;
+	font-size: 5em;
 	display: block;
 	clear: both;
-	background-image: -webkit-linear-gradient(#E54B6B, white);
-	padding: 0.3em;
-	margin: 0.1em;
+	margin: 0.5em 0.1em 0.5em 0.15em;
 }
 
 a {
@@ -108,6 +104,10 @@ li {
 
 img { max-width: 100%; height: auto; }
 
+@media (max-width: 800px){
+	img { width: 50%; height: auto;}
+}
+
 .imgheader {
 	margin: 1em;
 	padding: 1em;
@@ -116,5 +116,23 @@ img { max-width: 100%; height: auto; }
 }
 
 .text-content {
-	margin-left: 0.5em;
+	font-size: 1.3em;
+}
+
+.tab-text {
+	margin-left: 1em;
+	line-height: 110%;
+}
+
+.modal.fade.in{
+	top: 20%
+}
+
+#new-counter span {
+    padding: 0.15em;
+    color: #000;
+    text-shadow: 0.03em 0.03em 0.03em #fff;
+    border-radius: 0.1em;
+    box-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,.3);
+    background-image: -webkit-linear-gradient(red, white);
 }

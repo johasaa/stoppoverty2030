@@ -7,16 +7,16 @@
 				</div>	
 			</div>
 			<div class="row-fluid">
-				<div class="span7 subheader">
+				<div class="span12 subheader">
 					<b>Eradicate absolute poverty by 2030</b>
 				</div>			
 				<div class="row-fluid">
-					<div class="counter">@counter</div>
+					<div id="new-counter" class="counter"><span>@counter</span></div>
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span6">
-					<a href="@routes.Application.signPetitionForm" role="button" class="btn signup" data-toggle="modal" data-target="#signatureModal" >Sign the Stop Poverty petition</a>
+					<a href="@routes.Application.signPetitionForm" class="btn signup" data-toggle="modal" data-target="#signatureModal" >Sign the Stop Poverty petition</a>
 				</div>
 				<div class="modal hide fade" id="signatureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-header">
@@ -39,13 +39,13 @@
 				</div>
 			</div>
 			<div class="row-fluid">
-					<div class="span6 offset0">
+					<div class="span6 offset0 text-content">
 						<ul class="nav nav-tabs">
 						  <li class="active"><a href="#news" data-toggle="tab">News</a></li>
 						  <li><a href="#about" data-toggle="tab">About</a></li>
 						  <li><a href="#you" data-toggle="tab">What can you do</a></li>
 						</ul>
-						<div class="tab-content text-content">
+						<div class="tab-content tab-text">
 						  <div class="tab-pane active" id="news">
 						  <p class="subheader">Zero poor in 2030 </p>
 						  <p>The Earth has enough resources for everybody to live dignified lives. However, man-made policies have createt unjust distribution of resources. As a result, 2.6 billion live in absolute poverty.</p>

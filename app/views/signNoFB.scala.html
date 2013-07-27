@@ -1,4 +1,4 @@
-@(signNoFBForm: Form[Application.SignNoFacebook])(title: String)
+@(signNoFBForm: Form[SignatureModel])(title: String)
 
 @import helper._
 
@@ -14,8 +14,13 @@
             args = '_label -> "Last Name:", 'placeholder -> "Last Name"
         )
         
+        @inputText(
+            field = signNoFBForm("email"),
+            args = '_label -> "Email address:", 'placeholder -> "Email"
+        )
+        
         <div>
-        <a href="#" class="btn btn-primary">Sign now</a>
+        <button type="submit" class="btn btn-primary">Sign now</button>
         </div>
         
     }
