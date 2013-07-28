@@ -1,9 +1,14 @@
 package controllers;
 
+import models.SignatureModel;
+import models.StoppovertyFacebookSignature;
 import securesocial.core.Identity;
+import securesocial.core.SocialUser;
 import securesocial.core.UserId;
 import securesocial.core.java.BaseUserService;
 import securesocial.core.java.Token;
+
+import com.avaje.ebean.Query;
 
 
 public class StoppovertyUserservice extends BaseUserService{
@@ -20,8 +25,20 @@ public class StoppovertyUserservice extends BaseUserService{
      */
     @Override
     public Identity doSave(Identity user) {
-        // implement me
-    	return null;
+    	Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", user.id().id()).query();
+    	SocialUser socialUser = (SocialUser)user;
+    	if (signatureUser.findIds().isEmpty()){
+	    	StoppovertyFacebookSignature newSignatureUser = new StoppovertyFacebookSignature(socialUser);
+	    	newSignatureUser.save();
+	        SignatureModel model = new SignatureModel();
+	        model.firstName = socialUser.firstName();
+	        model.lastName = socialUser.lastName();
+	        model.email = socialUser.email().get();
+	        model.personalSignature = true;
+	        model.facebookUser = newSignatureUser;
+	        model.save();
+    	}
+    	return socialUser;
     }
 
     /**
@@ -30,8 +47,13 @@ public class StoppovertyUserservice extends BaseUserService{
      */
     @Override
     public Identity doFind(UserId userId) {
-        // implement me
-    	return null;
+        Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", userId.id()).query();
+        SocialUser user = null;
+        if (signatureUser.findRowCount() == 1){
+        	user = signatureUser.findList().get(0).getSocialUser();
+        }
+        
+    	return user;
     }
 
     /**
