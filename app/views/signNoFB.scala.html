@@ -1,26 +1,49 @@
 @(signNoFBForm: Form[SignatureModel])(title: String)
 
 @import helper._
-
-    @form(action = routes.Application.saveSignature, args = 'id -> "signNoFBForm") {
-        
-        @inputText(
-            field = signNoFBForm("firstName"),
-            args = '_label -> "First Name:", 'placeholder -> "First Name"
-        )
-        
-        @inputText(
-            field = signNoFBForm("lastName"),
-            args = '_label -> "Last Name:", 'placeholder -> "Last Name"
-        )
-        
-        @inputText(
-            field = signNoFBForm("email"),
-            args = '_label -> "Email address:", 'placeholder -> "Email"
-        )
-        
-        <div>
-        <button type="submit" class="btn btn-primary">Sign now</button>
-        </div>
-        
-    }
+	<div id="fb-root"></div>
+	<script>
+	  window.fbAsyncInit = function() {
+	    // init the FB JS SDK
+	    FB.init({
+	      appId      : 'YOUR_APP_ID',                        // App ID from the app dashboard
+	      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
+	      status     : true,                                 // Check Facebook Login status
+	      xfbml      : true                                  // Look for social plugins on the page
+	    });
+	
+	    // Additional initialization code such as adding Event Listeners goes here
+	  };
+	 </script>
+    
+    <form action="@routes.Application.saveSignature" id="signNoFBForm" class="form-horizontal">
+	  <fieldset>
+	    <div class="control-group">
+	      <label class="control-label" for="firstName" placeholder="First Name">First Name</label>
+	      <div class="controls">
+	        <input type="text" class="input-xlarge" name="firstName" id="firstName">
+	      </div>
+	    </div>
+		<div class="control-group">
+	      <label class="control-label" for="lastName" placeholder="Last Name">Last Name</label>
+	      <div class="controls">
+	        <input type="text" class="input-xlarge" name="lastName" id="lastName">
+	      </div>
+	    </div>
+	    <div class="control-group">
+	      <label class="control-label" for="email" placeholder="email adress">Email Address</label>
+	      <div class="controls">
+	        <input type="text" class="input-xlarge" name="email" id="email">
+	      </div>
+	    </div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary btn-large">Submit</button>
+			<button type="reset" class="btn">Cancel</button>
+		</div>
+	  </fieldset>
+	</form>
+	
+	<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/jquery.validate.min.js")" type="text/javascript"></script>	
+	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/custom.js")" type="text/javascript"></script>

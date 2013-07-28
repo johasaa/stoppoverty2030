@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.avaje.ebean.Query;
+
 import models.SignatureModel;
 import play.data.Form;
 import play.libs.Json;
@@ -33,6 +35,16 @@ public class Application extends Controller {
             signature.save();
             return redirect(routes.Application.index());
         }
+    }
+    
+    public static Result checkEmail(String email) {
+    	
+    	Query<SignatureModel> queryString = SignatureModel.find.where().ilike("email", email).query();
+    	
+    	if (queryString.findRowCount() > 0){
+    		return ok(Json.toJson(email + " already exists. You can only sign once"));
+    	}
+    	return ok(Json.toJson(Boolean.TRUE));
     }
     
     public static Result getSignatures(){
