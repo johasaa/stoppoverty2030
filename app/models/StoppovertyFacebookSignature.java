@@ -27,9 +27,6 @@ public class StoppovertyFacebookSignature extends Model {
 	//Facebook username
 	private String userName;
 	
-	//SecureSocialUser
-	private SocialUser socialUser;
-	
 	//Facebook oauth2 acessToken
 	private String userToken;
 	
@@ -50,7 +47,6 @@ public class StoppovertyFacebookSignature extends Model {
 	 */
 	public StoppovertyFacebookSignature(SocialUser user) {
 		super();
-		this.socialUser = user;
 		this.externalUser = user.id().id();
 		this.createdDate = new Date();
 	}
@@ -118,19 +114,6 @@ public class StoppovertyFacebookSignature extends Model {
 		return email;
 	}
 	
-	/**
-	 * @return the socialUser
-	 */
-	public SocialUser getSocialUser() {
-		return socialUser;
-	}
-
-	/**
-	 * @param socialUser the socialUser to set
-	 */
-	public void setSocialUser(SocialUser socialUser) {
-		this.socialUser = socialUser;
-	}
 
 	public static Model.Finder<Long,StoppovertyFacebookSignature> find = new Model.Finder<Long,StoppovertyFacebookSignature>(Long.class, StoppovertyFacebookSignature.class);
 

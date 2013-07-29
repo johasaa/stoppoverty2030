@@ -32,20 +32,16 @@ create sequence signature_model_seq;
 
 create sequence stoppoverty_facebook_signature_seq;
 
-alter table signature_model add constraint fk_signature_model_facebookUse_1 foreign key (externalUser) references stoppoverty_facebook_signature (user_id) on delete restrict on update restrict;
+alter table signature_model add constraint fk_signature_model_facebookUse_1 foreign key (externalUser) references stoppoverty_facebook_signature (user_id);
 create index ix_signature_model_facebookUse_1 on signature_model (externalUser);
 
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+drop table if exists signature_model cascade;
 
-drop table if exists signature_model;
-
-drop table if exists stoppoverty_facebook_signature;
-
-SET REFERENTIAL_INTEGRITY TRUE;
+drop table if exists stoppoverty_facebook_signature cascade;
 
 drop sequence if exists signature_model_seq;
 

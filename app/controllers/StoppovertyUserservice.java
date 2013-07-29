@@ -47,10 +47,12 @@ public class StoppovertyUserservice extends BaseUserService{
      */
     @Override
     public Identity doFind(UserId userId) {
-        Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", userId.id()).query();
+        Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", userId.id()).query();        
         SocialUser user = null;
         if (signatureUser.findRowCount() == 1){
-        	user = signatureUser.findList().get(0).getSocialUser();
+        	Query<SignatureModel> signatureModelQuery = SignatureModel.find.where().ilike("facebookUser", signatureUser.findUnique().getExternalUser()).query();
+        	SignatureModel model = signatureModelQuery.findUnique();
+        	user = new SocialUser(userId, model.firstName,model.lastName, model.email, null, null,null,null,null,null);
         }
         
     	return user;
