@@ -25,19 +25,19 @@ public class StoppovertyUserservice extends BaseUserService{
      */
     @Override
     public Identity doSave(Identity user) {
-    	Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", user.id().id()).query();
+    	//Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", user.id().id()).query();
     	SocialUser socialUser = (SocialUser)user;
-    	if (signatureUser.findIds().isEmpty()){
-	    	StoppovertyFacebookSignature newSignatureUser = new StoppovertyFacebookSignature(socialUser);
-	    	newSignatureUser.save();
-	        SignatureModel model = new SignatureModel();
-	        model.firstName = socialUser.firstName();
-	        model.lastName = socialUser.lastName();
-	        model.email = socialUser.email().get();
-	        model.personalSignature = true;
-	        model.facebookUser = newSignatureUser;
-	        model.save();
-    	}
+//    	if (signatureUser.findIds().isEmpty()){
+//	    	StoppovertyFacebookSignature newSignatureUser = new StoppovertyFacebookSignature(socialUser);
+//	    	newSignatureUser.save();
+//	        SignatureModel model = new SignatureModel();
+//	        model.firstName = socialUser.firstName();
+//	        model.lastName = socialUser.lastName();
+//	        model.email = socialUser.email().get();
+//	        model.personalSignature = true;
+//	        model.facebookUser = newSignatureUser;
+//	        model.save();
+//    	}
     	return socialUser;
     }
 

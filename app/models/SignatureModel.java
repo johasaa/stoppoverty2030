@@ -2,8 +2,6 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
@@ -24,9 +22,9 @@ public class SignatureModel extends Model{
 	
 	@Required public String email;
 	
-	@OneToOne
-	@JoinColumn(name="externalUser")
-	public StoppovertyFacebookSignature facebookUser;
+//	@OneToOne
+//	@JoinColumn(name="externalUser")
+//	public StoppovertyFacebookSignature facebookUser;
 	
 	public String organisation;
 	

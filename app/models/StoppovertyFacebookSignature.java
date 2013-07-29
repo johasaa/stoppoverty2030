@@ -46,7 +46,6 @@ public class StoppovertyFacebookSignature extends Model {
 	 * @param socialUser
 	 */
 	public StoppovertyFacebookSignature(SocialUser user) {
-		super();
 		this.externalUser = user.id().id();
 		this.createdDate = new Date();
 	}
