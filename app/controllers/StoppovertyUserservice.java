@@ -1,14 +1,10 @@
 package controllers;
 
-import models.SignatureModel;
-import models.StoppovertyFacebookSignature;
 import securesocial.core.Identity;
 import securesocial.core.SocialUser;
 import securesocial.core.UserId;
 import securesocial.core.java.BaseUserService;
 import securesocial.core.java.Token;
-
-import com.avaje.ebean.Query;
 
 
 public class StoppovertyUserservice extends BaseUserService{
@@ -47,15 +43,15 @@ public class StoppovertyUserservice extends BaseUserService{
      */
     @Override
     public Identity doFind(UserId userId) {
-        Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", userId.id()).query();        
-        SocialUser user = null;
-        if (signatureUser.findRowCount() == 1){
-        	Query<SignatureModel> signatureModelQuery = SignatureModel.find.where().ilike("facebookUser", signatureUser.findUnique().getExternalUser()).query();
-        	SignatureModel model = signatureModelQuery.findUnique();
-        	user = new SocialUser(userId, model.firstName,model.lastName, model.email, null, null,null,null,null,null);
-        }
+       // Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", userId.id()).query();        
+        //SocialUser user = null;
+//        if (signatureUser.findRowCount() == 1){
+//        	Query<SignatureModel> signatureModelQuery = SignatureModel.find.where().ilike("facebookUser", signatureUser.findUnique().getExternalUser()).query();
+//        	SignatureModel model = signatureModelQuery.findUnique();
+//        	user = new SocialUser(userId, model.firstName,model.lastName, model.email, null, null,null,null,null,null);
+//        }
         
-    	return user;
+    	return new SocialUser(userId, null ,null, null, null, null,null,null,null,null);
     }
 
     /**
