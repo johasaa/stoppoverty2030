@@ -8,7 +8,6 @@ create table signature_model (
   first_name                varchar(255),
   last_name                 varchar(255),
   email                     varchar(255),
-  externalUser              bigint,
   organisation              varchar(255),
   group_name                varchar(255),
   number_of_signatures      bigint,
@@ -32,8 +31,6 @@ create sequence signature_model_seq;
 
 create sequence stoppoverty_facebook_signature_seq;
 
-alter table signature_model add constraint fk_signature_model_facebookUse_1 foreign key (externalUser) references stoppoverty_facebook_signature (user_id);
-create index ix_signature_model_facebookUse_1 on signature_model (externalUser);
 
 
 
