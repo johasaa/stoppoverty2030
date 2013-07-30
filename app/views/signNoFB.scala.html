@@ -14,34 +14,95 @@
 	
 	    // Additional initialization code such as adding Event Listeners goes here
 	  };
-	 </script>
-    
-    <form action="@routes.Application.saveSignature" id="signNoFBForm" class="form-horizontal">
-	  <fieldset>
-	    <div class="control-group">
-	      <label class="control-label" for="firstName" placeholder="First Name">First Name</label>
-	      <div class="controls">
-	        <input type="text" class="input-xlarge" name="firstName" id="firstName">
-	      </div>
-	    </div>
-		<div class="control-group">
-	      <label class="control-label" for="lastName" placeholder="Last Name">Last Name</label>
-	      <div class="controls">
-	        <input type="text" class="input-xlarge" name="lastName" id="lastName">
-	      </div>
-	    </div>
-	    <div class="control-group">
-	      <label class="control-label" for="email" placeholder="email adress">Email Address</label>
-	      <div class="controls">
-	        <input type="text" class="input-xlarge" name="email" id="email">
-	      </div>
-	    </div>
-		<div class="form-actions">
-			<button type="submit" class="btn btn-primary btn-large">Submit</button>
-			<button type="reset" class="btn">Cancel</button>
+	
+	</script>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#person" data-toggle="tab" >Register personal support</a></li>
+		<li><a href="#group" data-toggle="tab" >Register on behalf of Group/Organisation</a></li>
+	</ul>
+    <div class="tab-content">    	
+    	<div class="tab-pane active" id="person">
+    		<div class="tab-text">
+    			<p>Sign with your facebook account: 
+    				<a class="uibutton confirm" href="/authenticate/facebook" id="shareSignature"><img src="@routes.Assets.at("images/FB-f-Logo__blue_29.png")" /> Sign</a>
+    			</p>
+    		</div>
+		    <form action="@routes.Application.saveSignature" id="signNoFBForm" class="form-horizontal">
+			  <fieldset id="form-div">
+			  	<legend>Or register manually</legend>
+			    <div class="control-group">
+			      <label class="control-label" for="firstName" placeholder="First Name">First Name</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="firstName" id="firstName">
+			      </div>
+			    </div>
+				<div class="control-group">
+			      <label class="control-label" for="lastName" placeholder="Last Name">Last Name</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="lastName" id="lastName">
+			      </div>
+			    </div>
+			    <div class="control-group">
+			      <label class="control-label" for="email" placeholder="email adress">Email Address</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="email" id="email">
+			      </div>
+			    </div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary btn-large">Submit</button>
+					<button type="reset" class="btn btn-large">Clean form</button>					
+				</div>
+			  </fieldset>
+			</form>
 		</div>
-	  </fieldset>
-	</form>
+		<div class="tab-pane" id="group">
+			<form action="@routes.Application.saveGroup" id="signGroupForm" class="form-horizontal">
+			  <fieldset>
+			    <div class="control-group">
+			      <label class="control-label" for="firstName" >First Name:</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="firstName" id="firstName">
+			      </div>
+			    </div>
+				<div class="control-group">
+			      <label class="control-label" for="lastName" >Last Name:</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="lastName" id="lastName">
+			      </div>
+			    </div>
+			    <div class="control-group">
+			      <label class="control-label" for="email" >Email Address:</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="email" id="email">
+			      </div>
+			    </div>
+			    <div class="control-group">
+			      <label class="control-label" for="organisation" >Name of your organisation:</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="organisation" id="organisation">
+			      </div>
+			    </div>
+			    <div class="control-group">
+			      <label class="control-label" for="groupName">Name of your group:</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="groupName" id="groupName">
+			      </div>
+			    </div>
+			    <div class="control-group">
+			      <label class="control-label" for="numberOfSignatures" >How many members are you signing for:</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="numberOfSignatures" id="numberOfSignatures">
+			      </div>
+			    </div>
+			    			    
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary btn-large">Submit</button>
+					<button type="reset" class="btn btn-large">Clean form</button>					
+				</div>
+			  </fieldset>
+			</form>
+		</div>
+	</div>
 	
 	<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
 	<script src="@routes.Assets.at("javascripts/jquery.validate.min.js")" type="text/javascript"></script>	

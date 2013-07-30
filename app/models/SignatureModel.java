@@ -22,10 +22,6 @@ public class SignatureModel extends Model{
 	
 	@Required public String email;
 	
-//	@OneToOne
-//	@JoinColumn(name="externalUser")
-//	public StoppovertyFacebookSignature facebookUser;
-	
 	public String organisation;
 	
 	public String groupName;
@@ -33,6 +29,10 @@ public class SignatureModel extends Model{
 	public Long numberOfSignatures;
 	
 	public Boolean personalSignature;
+	
+	public String userId;
+	
+	public String providerName;
 
 	public static Model.Finder<Long,SignatureModel> find = new Model.Finder<Long,SignatureModel>(Long.class, SignatureModel.class);
 	

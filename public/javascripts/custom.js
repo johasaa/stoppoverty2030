@@ -30,5 +30,14 @@ $(document).ready(function(){
 				.closest('.control-group').removeClass('error').addClass('success');
 			}
 	  });
+		
+	   $.getJSON( "/checksocial" , function( data ) {
+		  console.log("Received JSON data: " + data);
+		  if (data == true){
+			  $('.thankyou').css('display','block').hide().show().removeClass('none');
+		    
+		  }
+	  });
+			
 
 }); // end document.ready

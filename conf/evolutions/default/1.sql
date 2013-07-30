@@ -1,3 +1,6 @@
+# --- Created by Ebean DDL
+# To stop Ebean DDL generation, remove this comment and start using Evolutions
+
 # --- !Ups
 
 create table signature_model (
@@ -9,18 +12,19 @@ create table signature_model (
   group_name                varchar(255),
   number_of_signatures      bigint,
   personal_signature        boolean,
+  user_id                   varchar(255),
+  provider_name             varchar(255),
   constraint pk_signature_model primary key (id))
 ;
 
 create sequence signature_model_seq;
 
+
+
+
 # --- !Downs
 
 drop table if exists signature_model cascade;
 
-
-
 drop sequence if exists signature_model_seq;
-
-
 

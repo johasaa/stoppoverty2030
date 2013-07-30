@@ -1,5 +1,8 @@
 package controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import securesocial.core.Identity;
 import securesocial.core.SocialUser;
 import securesocial.core.UserId;
@@ -8,6 +11,8 @@ import securesocial.core.java.Token;
 
 
 public class StoppovertyUserservice extends BaseUserService{
+	
+	private static Map<String, SocialUser> userMap = new HashMap<>();
 	
 	public StoppovertyUserservice(play.Application application) {
         super(application);
@@ -21,19 +26,10 @@ public class StoppovertyUserservice extends BaseUserService{
      */
     @Override
     public Identity doSave(Identity user) {
-    	//Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", user.id().id()).query();
+    	
     	SocialUser socialUser = (SocialUser)user;
-//    	if (signatureUser.findIds().isEmpty()){
-//	    	StoppovertyFacebookSignature newSignatureUser = new StoppovertyFacebookSignature(socialUser);
-//	    	newSignatureUser.save();
-//	        SignatureModel model = new SignatureModel();
-//	        model.firstName = socialUser.firstName();
-//	        model.lastName = socialUser.lastName();
-//	        model.email = socialUser.email().get();
-//	        model.personalSignature = true;
-//	        model.facebookUser = newSignatureUser;
-//	        model.save();
-//    	}
+    	userMap.put(user.id().id(), socialUser);
+    
     	return socialUser;
     }
 
@@ -42,16 +38,8 @@ public class StoppovertyUserservice extends BaseUserService{
      * @return an Identity instance or null if no user matches the specified id
      */
     @Override
-    public Identity doFind(UserId userId) {
-       // Query<StoppovertyFacebookSignature> signatureUser = StoppovertyFacebookSignature.find.where().ilike("externalUser", userId.id()).query();        
-        //SocialUser user = null;
-//        if (signatureUser.findRowCount() == 1){
-//        	Query<SignatureModel> signatureModelQuery = SignatureModel.find.where().ilike("facebookUser", signatureUser.findUnique().getExternalUser()).query();
-//        	SignatureModel model = signatureModelQuery.findUnique();
-//        	user = new SocialUser(userId, model.firstName,model.lastName, model.email, null, null,null,null,null,null);
-//        }
-        
-    	return new SocialUser(userId, null ,null, null, null, null,null,null,null,null);
+    public Identity doFind(UserId userId) {        
+    	return userMap.get(userId.id());
     }
 
     /**

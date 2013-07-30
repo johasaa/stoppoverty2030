@@ -6,19 +6,32 @@
 					<img src="@routes.Assets.at("images/stoppoverty_ny.jpg")"/>                                
 				</div>	
 			</div>
-			<div class="row-fluid">
+			<div class="row-fluid">				
 				<div class="span12 subheader">
 					<b>Eradicate absolute poverty by 2030</b>
-				</div>			
-				<div class="row-fluid">
-					<div class="span6">
+				</div>	
+			</div>
+			<div class="row-fluid">
+					<div class="span5">
 						<div class="counter">@counter</div>
+					</div>
+			</div>
+			<div class="thankyou">
+				<div class="row-fluid">
+					<div class="span8" id="thankyouModal" >
+							<div class="subheader">						
+								<b>Thank you!</b>
+							</div>
+							<div class="text-content tab-text">
+								You were already registered with you profile, and we are most grateful for your support.
+								Multiply your impact and share with your friends!							
+							</div>
 					</div>
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span6">
-					<a href="@routes.Application.signPetitionForm" class="btn signup" data-toggle="modal" data-target="#signatureModal" >Sign the Stop Poverty petition</a>
+					<a href="@routes.Application.signPetitionForm" class="btn signup" data-toggle="modal" data-target="#signatureModal" ><b>Sign the Stop Poverty petition</b></a>
 				</div>
 				<div class="modal hide fade" id="signatureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-header">
@@ -28,7 +41,7 @@
 					<div class="modal-body">						
 					</div>
 				</div>
-			</div>
+			</div>			
 			<div class="row-fluid visible-desktop">
 				<div class="span3" >
 					<img src="@routes.Assets.at("images/instagram-logo.jpg")"  width="25%"/>

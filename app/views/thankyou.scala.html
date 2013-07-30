@@ -1,0 +1,40 @@
+@(title: String)(counter: String)
+
+@head(title)
+<div class="container">
+				<div class="row-fluid">				
+					<div class="span4 imgheader">
+						<img src="@routes.Assets.at("images/stoppoverty_ny.jpg")"/>                                
+					</div>	
+				</div>
+				<div class="row-fluid">				
+					<div class="span12 subheader">
+						<b>Eradicate absolute poverty by 2030</b>
+					</div>	
+				</div>
+				<div class="row-fluid">
+						<div class="span5">
+							<div class="counter">@counter</div>
+						</div>
+					</div>
+				<div class="row-fluid">
+					<div class="span8 subheader">
+						<b>Thanks for signing! Your signature takes us one step towards a just world.
+						Multiply your impact and share with your friends!</b>
+					</div>
+				</div>			
+				<div class="row-fluid" >
+					<div class="form-actions">
+							<a class="uibutton large confirm" href="@routes.Application.shareSignature" id="shareSignature"><img src="@routes.Assets.at("images/FB-f-Logo__blue_29.png")" /> Share</a>							
+							<a href="@routes.Application.index" class="uibutton large" ><img src="@routes.Assets.at("images/stoppoverty_small.jpg")"/> Back</a>
+										
+					</div>						
+				</div>				
+	</div>
+	<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/jquery.validate.min.js")" type="text/javascript"></script>	
+	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/custom.js")" type="text/javascript"></script>
+</body>
+</html>
+
