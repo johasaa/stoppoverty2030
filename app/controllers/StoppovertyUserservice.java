@@ -12,7 +12,7 @@ import securesocial.core.java.Token;
 
 public class StoppovertyUserservice extends BaseUserService{
 	
-	private static Map<String, SocialUser> userMap = new HashMap<>();
+	private static Map<String, SocialUser> userMap = new HashMap<String, SocialUser>();
 	
 	public StoppovertyUserservice(play.Application application) {
         super(application);
