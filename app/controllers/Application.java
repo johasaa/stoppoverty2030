@@ -2,22 +2,21 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import models.SignatureModel;
-import play.api.mvc.Session;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import securesocial.core.SocialUser;
 import securesocial.core.java.SecureSocial;
-import securesocial.core.java.SecureSocial.SecuredAction;
 import views.html.index;
 import views.html.signNoFB;
 import views.html.thankyou;
+import views.html.channel;
 
-import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.Query;
 
 
@@ -26,6 +25,11 @@ public class Application extends Controller {
 	public static Result index() {    	
         return ok(index.render("Stop Poverty 2030", getNumberOfSignatures()));
     }
+	
+	//for facebook jssdk
+	public static Result channel() {
+		return ok(channel.render());
+	}
     
     public static Result signPetitionForm() {   
     	
@@ -47,6 +51,10 @@ public class Application extends Controller {
             	signature.personalSignature = true;
             	signature.numberOfSignatures = 1L;
             }
+            else {
+            	signature.personalSignature = true;
+            }
+            signature.registeredDate = new Date();
             signature.save();
             return redirect(routes.Application.thankyou());
         }

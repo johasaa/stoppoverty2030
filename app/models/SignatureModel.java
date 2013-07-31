@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -33,6 +35,8 @@ public class SignatureModel extends Model{
 	public String userId;
 	
 	public String providerName;
+	
+	public Date registeredDate;
 
 	public static Model.Finder<Long,SignatureModel> find = new Model.Finder<Long,SignatureModel>(Long.class, SignatureModel.class);
 	

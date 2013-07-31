@@ -1,60 +1,43 @@
 @(counter: String)
 
 <div class="container">
-			<div class="row-fluid">				
-				<div class="span4 imgheader">
-					<img src="@routes.Assets.at("images/stoppoverty_ny.jpg")"/>                                
-				</div>	
-			</div>
-			<div class="row-fluid">				
-				<div class="span12 subheader">
-					<b>Eradicate absolute poverty by 2030</b>
-				</div>	
-			</div>
-			<div class="row-fluid">
-					<div class="span5">
-						<div class="counter">@counter</div>
+			<div id="fb-root"></div>			
+			<div class="center">
+				@bodyincludetop(counter)
+				<div class="row">
+					<div class="span12">
+						<a href="@routes.Application.signPetitionForm" class="btn signup" data-toggle="modal" data-target="#signatureModal" ><b>Sign the Stop Poverty petition</b></a>
 					</div>
-			</div>
-			<div class="thankyou">
-				<div class="row-fluid">
-					<div class="span8" id="thankyouModal" >
-							<div class="subheader">						
-								<b>Thank you!</b>
-							</div>
-							<div class="text-content tab-text">
-								You were already registered with you profile, and we are most grateful for your support.
-								Multiply your impact and share with your friends!							
-							</div>
+					<div class="modal hide fade" id="signatureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
+							<h3 id="myModalLabel">Sign Stop Poverty Petition</h3>
+						</div>
+						<div class="modal-body">						
+						</div>
 					</div>
 				</div>
+			</div>		
+			<div class="row visible-desktop insta">
+				<fieldset class="scheduler-border center">
+					<legend class="scheduler-border">
+						<img class="insta" src="@routes.Assets.at("images/instagram-logo-liten.png")" />						
+					</legend>
+					<fieldset class="scheduler-border">
+						<legend class="scheduler-border">
+							<b>#stoppoverty</b>
+						</legend>
+						<div class="row stoppovertytag"></div>
+					</fieldset>
+					<fieldset class="scheduler-border">
+						<legend class="scheduler-border">
+							<b>#0poor</b>
+						</legend>
+						<div class="row 0poortag"></div>					
+				</fieldset>
 			</div>
-			<div class="row-fluid">
-				<div class="span6">
-					<a href="@routes.Application.signPetitionForm" class="btn signup" data-toggle="modal" data-target="#signatureModal" ><b>Sign the Stop Poverty petition</b></a>
-				</div>
-				<div class="modal hide fade" id="signatureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
-						<h3 id="myModalLabel">Sign Stop Poverty Petition</h3>
-					</div>
-					<div class="modal-body">						
-					</div>
-				</div>
-			</div>			
-			<div class="row-fluid visible-desktop">
-				<div class="span3" >
-					<img src="@routes.Assets.at("images/instagram-logo.jpg")"  width="25%"/>
-					<b class="instagram">#stoppoverty</b>
-				</div>
-				<div class="span6 ">
-					<!-- SnapWidget -->					
-					<iframe src="http://snapwidget.com/in/?h=c3RvcHBvdmVydHl8aW58MTAwfDV8MXx8eWVzfDV8bm9uZQ==" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:575px; height: 115px" ></iframe>	
-					<!-- SnapWidget -->
-				</div>
-			</div>
-			<div class="row-fluid">
-					<div class="span6 offset0 text-content">
+			<div class="row">
+					<div class="span7 offset0 text-content">
 						<ul class="nav nav-tabs">
 						  <li class="active"><a href="#news" data-toggle="tab">News</a></li>
 						  <li><a href="#about" data-toggle="tab">About</a></li>
@@ -82,12 +65,14 @@
 						  <div class="tab-pane" id="you">Description</div>
 						</div>
 					</div>
-				<!--  <div class="span3 facebook fb-like-box" data-href="https://www.facebook.com/stoppoverty2030" data-width="295" data-show-faces="true" data-stream="true" data-show-border="true" data-header="true"> </div> -->
+				<div class="span3 facebook fb-like-box" data-href="https://www.facebook.com/stoppoverty2030" data-width="295" data-show-faces="true" data-stream="true" data-show-border="true" data-header="true"> </div>
 			</div>					 
 			 
 		</div><!--end container-fluid -->		
 	<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
 	<script src="@routes.Assets.at("javascripts/jquery.validate.min.js")" type="text/javascript"></script>	
 	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
-	<script src="@routes.Assets.at("javascripts/custom.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/jquery-instagram.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/main.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/facebook-init.js")" type="text/javascript"></script>
 </body>

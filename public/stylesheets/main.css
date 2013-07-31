@@ -12,13 +12,12 @@ html, body {
 }
 
 body {
-	background: #B9B7B1;
 	background-image: radial-gradient(
 		center 0,
 		white,
 		#B9B7B1
 	);
-	font-family: Garamond, EB Garamond;
+	font-family: verdana;
 }
 
 @media only screen and (max-width: 400px) {
@@ -47,32 +46,25 @@ body {
 	background: white;
 }
 
-.container-fluid{
-	background: white;
-	margin-left: 1em;
-	margin-right: 1em;
-	width: 95%;
-}
-
 .facebook {
 	height: 600px;
 }
 
 .signup {
 	background: #B9B7B1;
-	font-size: 1.75em;
+	font-size: 2vmax;
 	line-height: 100%;
-	float: left;
 	color: black;
 	margin: 0.5em;
-	padding: 0.5em;	
+	padding: 0.5em;
+	display: inline-block;	
 }
 
 .counter{
 	font-family: 'digi';
-	display: inline block;
+	display: inline-block;
 	margin: 0.2em 0.1em 0.2em 0.15em;
-	font-size: 11.3vh;
+	font-size: 7vmax;
 	line-height: 100%;
 	text-shadow: 0.03em 0.03em 0.03em #fff;
 	color: #000;
@@ -80,6 +72,23 @@ body {
     background: -webkit-linear-gradient(red, white);
     background: -moz-linear-gradient(red, white);
     border-radius: 0.1em;
+}
+
+.counter-straight{
+	display: inline-block;
+	margin: 0.2em 0.1em 0.2em 0.15em;
+	font-size: 7vmax;
+	line-height: 100%;
+	
+	color: #000;
+	box-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,.3);
+   	background-color: #d9232e;
+    border-radius: 0.1em;
+    padding-right: 0.05em;
+}
+
+.modal{
+	width: auto;
 }
 
 a {
@@ -91,35 +100,41 @@ li {
 }
 
 .subheader{
-	font-size: 1.5em;
+	font-size: 1.5vmax;
 	font-weight: bold;
 	margin: 0.3em;
 	padding: 0.5em;
 }
 
-.instagram{
-	font-size:3vmin;
-	margin-top: 0.1em; 
+.topheader{
+	font-size: 2vmax;
+	font-weight: bold;
+	margin: 0.1em;
+	padding: 0.5em;
+}
+
+.insta{
+	font-size:1.5vmax;
+	margin-top: 0.01em; 
 	margin-bottom: 0.1em;
 	padding-top: 1em;
 	padding-bottom: 0.5em;
 }
 
-img { max-width: 100%; height: auto; }
+img.insta, img.instagram-image {max-width: 100%; height: auto;}
 
-@media (max-width: 800px){
-	img { width: 50%; height: auto;}
-}
+
+img { max-width: 40%; height: auto; }
 
 .imgheader {
 	margin: 1em;
 	padding: 1em;
-	display: block;
+	display: inline-block;
 	
 }
 
 .text-content {
-	font-size: 1.3em;
+	font-size: 1.3vmax;
 }
 
 .tab-text {
@@ -159,4 +174,28 @@ label.error {
 
 .thankyou {
 	display: none;
+}
+
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+     text-align: center;
+}
+
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
 }

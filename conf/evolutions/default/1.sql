@@ -14,6 +14,7 @@ create table signature_model (
   personal_signature        boolean,
   user_id                   varchar(255),
   provider_name             varchar(255),
+  registered_date           timestamp,
   constraint pk_signature_model primary key (id))
 ;
 
