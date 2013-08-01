@@ -5,7 +5,10 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.codehaus.jackson.JsonNode;
+
 import models.SignatureModel;
+import models.StoppovertyFacebookUser;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -33,7 +36,7 @@ public class Application extends Controller {
     
     public static Result signPetitionForm() {   
     	
-    	return ok(signNoFB.render(Form.form(SignatureModel.class), "Stop Poverty 2030"));
+    	return ok(signNoFB.render());
     }
     
     public static Result thankyou(){
@@ -43,21 +46,11 @@ public class Application extends Controller {
     public static Result saveSignature(){
     	Form<SignatureModel> signatureForm = Form.form(SignatureModel.class).bindFromRequest();
     	if(signatureForm.hasErrors()) {
-            return badRequest(signNoFB.render(signatureForm, ""));
+            return badRequest(signNoFB.render());
         } else {
-            SignatureModel signature = signatureForm.get();
-            if (signature.groupName == null 
-            		&& signature.organisation == null){
-            	signature.personalSignature = true;
-            	signature.numberOfSignatures = 1L;
-            }
-            else {
-            	signature.personalSignature = true;
-            }
-            signature.registeredDate = new Date();
-            signature.save();
-            return redirect(routes.Application.thankyou());
+            save(signatureForm.get());
         }
+    	return redirect(routes.Application.thankyou());
     }
     
     public static Result saveGroup(){
@@ -82,27 +75,6 @@ public class Application extends Controller {
     	return ok(Json.toJson(signatureList));    	
     }
     
-    public static Result loginSecureSocial(){
-    	SocialUser user = (SocialUser) SecureSocial.currentUser();
-    	System.out.println("Getting the currentUser: " + user);
-    	
-    	
-    	SignatureModel signatureModel = SignatureModel.find.where().eq("userId", user.id().id()).findUnique();
-    	if (signatureModel == null){
-	    	SignatureModel model = new SignatureModel();
-	        model.firstName = user.firstName();
-	        model.lastName = user.lastName();
-	        model.email = user.email().get();
-	        model.personalSignature = true;	
-	        model.numberOfSignatures = 1L;
-	        model.userId = user.id().id();
-	        model.providerName = user.id().providerId();
-	        model.save();
-	        return redirect(routes.Application.thankyou());
-        }
-    	return redirect(routes.Application.index());
-    }
-    
     public static Result checkSocialSignature(){
     	SocialUser user = (SocialUser) SecureSocial.currentUser();
     	Boolean hasSignedAlready = Boolean.FALSE;
@@ -113,10 +85,40 @@ public class Application extends Controller {
     	return ok(Json.toJson(hasSignedAlready));
     }
     
-    public static Result shareSignature() {
-    	SocialUser user = (SocialUser) SecureSocial.currentUser();
+    public static Result saveJSONSignature() {
+    	JsonNode jsonNode = request().body().asJson();
+    	if (jsonNode != null){
+		StoppovertyFacebookUser fbUser = Json.fromJson(jsonNode, StoppovertyFacebookUser.class);
+		SignatureModel signature = new SignatureModel(fbUser.first_name,  
+													  fbUser.last_name, 
+													  fbUser.email, 
+													  null, //organisation name not necessary
+													  null, //groupname not necessary
+													  1L, //always one from facebook
+													  fbUser.id);
+			save(signature);		
+		return ok(jsonNode);
+    	}
     	
-		return null;    	
+		return ok(Json.toJson(Boolean.FALSE));    	
+    }
+    
+    private static void save(SignatureModel signature) {
+    	if (signature.groupName == null 
+        		&& signature.organisation == null){
+        	signature.personalSignature = true;
+        	signature.numberOfSignatures = 1L;
+        	signature.isValid = true;
+        }
+        else {
+        	signature.personalSignature = false;
+        }
+    	if (signature.userId != null){
+    		signature.providerName = "facebook";
+    	}
+        signature.registeredDate = new Date();
+        signature.validate();
+        signature.save();        
     }
     
     private static String getNumberOfSignatures() {

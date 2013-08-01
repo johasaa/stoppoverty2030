@@ -2,6 +2,50 @@
 
 @head(title)
 <div class="container center">
+		<script type="text/javascript">
+			function shareOnFacebook(){
+				
+				FB.getLoginStatus(function(response){
+			    	 if (response.status === 'connected') {			    			
+			    		 var uid = response.authResponse.userID;
+			    		 var accessToken = response.authResponse.accessToken;
+			    		 console.log("uid and token: " + uid + ", " + accessToken);
+			    		 doShare();
+			    	 }else {			    			  
+			    		  FB.login(function(response) {
+		    				   if (response.authResponse) {
+		    				     console.log('Welcome!  Fetching your information.... ');
+		    				     FB.api('/me', function(response) {
+		    				       console.log('Good to see you, ' + response.name + '.');
+		    				     });
+		    				     doShare();
+		    				   } else {
+		    				     console.log('User cancelled login or did not fully authorize.');
+		    				   }
+		    				 });
+		    		  }
+			    	 
+			    });			
+		   	}
+			
+			function doShare() {
+				url = 'https://stoppoverty2030.herokuapp.com';
+				FB.ui({
+					  method: 'feed',
+					  link: url,				  
+					  picture: url + '/assets/images/stoppoverty_ny.jpg',
+					  name: 'Stop Poverty',
+					  caption: 'Eradicate absolute poverty by 2030',
+					  description: 'The Earth has enough resources for everybody to live dignified lives. However, man-made policies have createt unjust distribution of resources. As a result, 2.6 billion live in absolute poverty.'
+					}, function(response){
+							if (response && response.post_id) {
+						      alert('Post was published.');
+						    } else {
+						      alert('Post was not published.');
+						    }
+					});
+			}
+		</script>
 				<div class="center">
 					@bodyincludetop(counter)
 					<div class="row">	
@@ -11,27 +55,13 @@
 						</div>
 					</div>
 				</div>			
-				<div class="row" >
-					<div class="form-actions">							
-							<a class="uibutton large confirm" href="#" 
-							  onclick="
-							    window.open(
-							      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
-							      'facebook-share-dialog', 
-							      'width=626,height=436'); 
-							    return false;">
-							  Share on Facebook
-							</a>
-														
-							<a href="@routes.Application.index" class="uibutton large" >No thank you!</a>
-										
-					</div>						
-				</div>
+				@tnxcomponent()
 							
 	</div>
 	<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
 	<script src="@routes.Assets.at("javascripts/jquery.validate.min.js")" type="text/javascript"></script>	
-	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>	
+	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/facebook-init.js")" type="text/javascript"></script>
 </body>
 </html>
 

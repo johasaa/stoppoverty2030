@@ -8,7 +8,6 @@
 html, body {
 	width: 100%;	
 	height: 100%;
-	font-size: 100%;
 }
 
 body {
@@ -34,12 +33,7 @@ body {
 } 
 
 @media screen (max-width: 768px) {
-	body { font-size: 95%; }
-	.signup {
-		width: auto;		
-		font-size: 4em;
-	}
-	
+	body { font-size: 75%; }	
 }
 
 .container {
@@ -52,7 +46,7 @@ body {
 
 .signup {
 	background: #B9B7B1;
-	font-size: 2vmax;
+	font-size: 2em;
 	line-height: 100%;
 	color: black;
 	margin: 0.5em;
@@ -64,11 +58,13 @@ body {
 	font-family: 'digi';
 	display: inline-block;
 	margin: 0.2em 0.1em 0.2em 0.15em;
-	font-size: 7vmax;
+	font-size: 7em;
 	line-height: 100%;
 	text-shadow: 0.03em 0.03em 0.03em #fff;
 	color: #000;
 	box-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,.3);
+	-moz-box-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,.3);
+	-webkit-box-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,.3);	
     background: -webkit-linear-gradient(red, white);
     background: -moz-linear-gradient(red, white);
     border-radius: 0.1em;
@@ -77,18 +73,16 @@ body {
 .counter-straight{
 	display: inline-block;
 	margin: 0.2em 0.1em 0.2em 0.15em;
-	font-size: 7vmax;
+	font-size: 7em;
 	line-height: 100%;
 	
 	color: #000;
 	box-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,.3);
+	-moz-box-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,.3);
+	-webkit-box-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,.3);
    	background-color: #d9232e;
     border-radius: 0.1em;
     padding-right: 0.05em;
-}
-
-.modal{
-	width: auto;
 }
 
 a {
@@ -100,21 +94,24 @@ li {
 }
 
 .subheader{
-	font-size: 1.5vmax;
+	font-size: 1.5em;
 	font-weight: bold;
 	margin: 0.3em;
 	padding: 0.5em;
 }
 
 .topheader{
-	font-size: 2vmax;
+	font-size: 2em;
 	font-weight: bold;
 	margin: 0.1em;
 	padding: 0.5em;
 }
 
+.hasSigned {
+	display: none;
+}
 .insta{
-	font-size:1.5vmax;
+	font-size:1.5em;
 	margin-top: 0.01em; 
 	margin-bottom: 0.1em;
 	padding-top: 1em;
@@ -124,26 +121,19 @@ li {
 img.insta, img.instagram-image {max-width: 100%; height: auto;}
 
 
-img { max-width: 40%; height: auto; }
+img { max-width: 30%; height: auto; }
 
-.imgheader {
-	margin: 1em;
-	padding: 1em;
-	display: inline-block;
-	
+.imgheader {	
+	padding: 1em;	
 }
 
 .text-content {
-	font-size: 1.3vmax;
+	font-size: 1.3em;
 }
 
 .tab-text {
-	margin-left: 1em;
+	margin-left: auto;
 	line-height: 110%;
-}
-
-.modal-body {
-	max-height: none;
 }
 
 label.valid {
@@ -184,18 +174,18 @@ label.error {
 }
 
 fieldset.scheduler-border {
-    border: 1px groove #ddd !important;
-    padding: 0 1.4em 1.4em 1.4em !important;
-    margin: 0 0 1.5em 0 !important;
-    -webkit-box-shadow:  0px 0px 0px 0px #000;
-            box-shadow:  0px 0px 0px 0px #000;
+    border: 1px groove #ddd;
+    padding: 0 0.5em 0.5em 0.5em;
+    margin: 0 0 0.5em 0;
 }
 
 legend.scheduler-border {
-    font-size: 1.2em !important;
-    font-weight: bold !important;
-    text-align: left !important;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: auto;
+    line-height: 1em;
     width:auto;
-    padding:0 10px;
+    padding:0;
     border-bottom:none;
 }

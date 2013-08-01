@@ -1,18 +1,21 @@
-@(signNoFBForm: Form[SignatureModel])(title: String)
+
 
 @import helper._
 	<div id="fb-root"></div>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#person" data-toggle="tab" >Register personal support</a></li>
-		<li><a href="#group" data-toggle="tab" >Register on behalf of Group/Organisation</a></li>
+		<li><a href="#group" data-toggle="tab" >Group support</a></li>
+		<li><a href="#org" data-toggle="tab" >Organisation support</a></li>
 	</ul>
     <div class="tab-content">    	
     	<div class="tab-pane active" id="person">
-    		<div class="tab-text">
-    			<fb:login-button show-faces="true" width="300" max-rows="3"></fb:login-button>   						
+    		<div>    			
+    			<div class="showFBInfo"></div>
+    			<a class="uibutton large confirm " href="@routes.Application.index" id="signWithFB" onclick="signWithFacebook();">Sign with Facebook</a>
+    			<div id="thankyou">@tnxcomponent()</div>   						
     		</div>
 		    <form action="@routes.Application.saveSignature" id="signNoFBForm" class="form-horizontal">
-			  <fieldset id="form-div">
+			  <fieldset id="form-div" >
 			  	<legend>Or register manually</legend>
 			    <div class="control-group">
 			      <label class="control-label" for="firstName" placeholder="First Name">First Name</label>
@@ -40,45 +43,46 @@
 			</form>
 		</div>
 		<div class="tab-pane" id="group">
+			<div>
+				<p>You can give your support as a group. Remember that if there are more than 100 members in your group,
+				campaign officers will have to verify the registration. You will receive an email to the contact address when it is approved
+				</p>				
+			</div>
 			<form action="@routes.Application.saveGroup" id="signGroupForm" class="form-horizontal">
-			  <fieldset>
-			    <div class="control-group">
-			      <label class="control-label" for="firstName" >First Name:</label>
-			      <div class="controls">
-			        <input type="text" class="input-xlarge" name="firstName" id="firstName">
-			      </div>
-			    </div>
-				<div class="control-group">
-			      <label class="control-label" for="lastName" >Last Name:</label>
-			      <div class="controls">
-			        <input type="text" class="input-xlarge" name="lastName" id="lastName">
-			      </div>
-			    </div>
-			    <div class="control-group">
-			      <label class="control-label" for="email" >Email Address:</label>
-			      <div class="controls">
-			        <input type="text" class="input-xlarge" name="email" id="email">
-			      </div>
-			    </div>
-			    <div class="control-group">
-			      <label class="control-label" for="organisation" >Name of your organisation:</label>
-			      <div class="controls">
-			        <input type="text" class="input-xlarge" name="organisation" id="organisation">
-			      </div>
-			    </div>
-			    <div class="control-group">
-			      <label class="control-label" for="groupName">Name of your group:</label>
+			  <fieldset class="form-div">
+			  	<div class="control-group">
+			      <label class="control-label" for="groupName">Group name:</label>
 			      <div class="controls">
 			        <input type="text" class="input-xlarge" name="groupName" id="groupName">
 			      </div>
 			    </div>
 			    <div class="control-group">
-			      <label class="control-label" for="numberOfSignatures" >How many members are you signing for:</label>
+			      <label class="control-label" for="numberOfSignatures" >Number of members:</label>
 			      <div class="controls">
 			        <input type="text" class="input-xlarge" name="numberOfSignatures" id="numberOfSignatures">
 			      </div>
 			    </div>
-			    			    
+			    <fieldset class="scheduler-border">
+			    	<legend class="scheduler-border">Contact information: </legend>
+				    <div class="control-group">
+				      <label class="control-label" for="firstName" >First Name:</label>
+				      <div class="controls">
+				        <input type="text" class="input-xlarge" name="firstName" id="firstName">
+				      </div>
+				    </div>
+					<div class="control-group">
+				      <label class="control-label" for="lastName" >Last Name:</label>
+				      <div class="controls">
+				        <input type="text" class="input-xlarge" name="lastName" id="lastName">
+				      </div>
+				    </div>
+				    <div class="control-group">
+				      <label class="control-label" for="email" >Email Address:</label>
+				      <div class="controls">
+				        <input type="text" class="input-xlarge" name="email" id="email">
+				      </div>
+				    </div>
+			    </fieldset>			    	    			    
 				<div class="form-actions">
 					<button type="submit" class="btn btn-primary btn-large">Submit</button>
 					<button type="reset" class="btn btn-large">Clean form</button>					
@@ -86,11 +90,52 @@
 			  </fieldset>
 			</form>
 		</div>
-	</div>
-	
-	<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
-	<script src="@routes.Assets.at("javascripts/jquery.validate.min.js")" type="text/javascript"></script>	
-	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
-	<script src="@routes.Assets.at("javascripts/customvalidate.js")" type="text/javascript"></script>
-	<script src="@routes.Assets.at("javascripts/facebook-init.js")" type="text/javascript"></script>
+		<div class="tab-pane" id="org">
+			<div>
+				You can give your support as a group. Remember that if there are more than 100 members in your group,
+				campaign officers will have to verify the registration. You will receive an email to the contact address when it is approved				
+			</div>
+			<form action="@routes.Application.saveGroup" id="signGroupForm" class="form-horizontal">
+			  <fieldset>
+			  	<div class="control-group">
+			      <label class="control-label" for="groupName">Group name:</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="groupName" id="groupName">
+			      </div>
+			    </div>
+			    <div class="control-group">
+			      <label class="control-label" for="numberOfSignatures" >Number of members:</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" name="numberOfSignatures" id="numberOfSignatures">
+			      </div>
+			    </div>
+			    <fieldset class="scheduler-border">
+			    	<legend class="scheduler-border">Contact information: </legend>
+				    <div class="control-group">
+				      <label class="control-label" for="firstName" >First Name:</label>
+				      <div class="controls">
+				        <input type="text" class="input-xlarge" name="firstName" id="firstName">
+				      </div>
+				    </div>
+					<div class="control-group">
+				      <label class="control-label" for="lastName" >Last Name:</label>
+				      <div class="controls">
+				        <input type="text" class="input-xlarge" name="lastName" id="lastName">
+				      </div>
+				    </div>
+				    <div class="control-group">
+				      <label class="control-label" for="email" >Email Address:</label>
+				      <div class="controls">
+				        <input type="text" class="input-xlarge" name="email" id="email">
+				      </div>
+				    </div>
+			    </fieldset>			    	    			    
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary btn-large">Submit</button>
+					<button type="reset" class="btn btn-large">Clean form</button>					
+				</div>
+			  </fieldset>
+			</form>
+		</div>
+	</div>	
 	

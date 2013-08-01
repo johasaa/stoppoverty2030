@@ -57,8 +57,7 @@ $(document).ready(function(){
 		      },
 		      email: {
 		        required: true,
-		        email: true,
-		        remote: "/checkEmail"      	
+		        email: true,		              	
 		      },
 		      organisation: {
 			        required: false,
