@@ -49,7 +49,7 @@ public class Application extends Controller {
     	    	
         save(signatureForm.get());
         
-    	return ok(Json.toJson(Boolean.TRUE));
+    	return redirect(routes.Application.thankyou());
     }
     
     public static Result saveGroup(){
@@ -59,7 +59,7 @@ public class Application extends Controller {
     		System.out.println((SignatureModel)signatureForm.get());
     		save(signatureForm.get());
     	}
-    	return ok(Json.toJson(Boolean.TRUE));
+    	return redirect(routes.Application.thankyou());
     }
     
     public static Result checkEmail(String email) {
@@ -102,7 +102,7 @@ public class Application extends Controller {
 													  1L, //always one from facebook
 													  fbUser.id);
 			save(signature);		
-		return ok(jsonNode);
+			return ok(jsonNode);
     	}
     	
 		return ok(Json.toJson(Boolean.FALSE));    	
