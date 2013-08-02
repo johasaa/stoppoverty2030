@@ -19,6 +19,7 @@ import views.html.index;
 import views.html.signNoFB;
 import views.html.thankyou;
 import views.html.channel;
+import views.html.verification;
 
 import com.avaje.ebean.Query;
 
@@ -89,7 +90,7 @@ public class Application extends Controller {
     	JsonNode jsonNode = request().body().asJson();
     	if (jsonNode != null){
 		StoppovertyFacebookUser fbUser = Json.fromJson(jsonNode, StoppovertyFacebookUser.class);
-		SignatureModel signature = new SignatureModel(fbUser.first_name,  
+		SignatureModel signature = new SignatureModel(fbUser.first_name + " " + fbUser.middle_name,  
 													  fbUser.last_name, 
 													  fbUser.email, 
 													  null, //organisation name not necessary
@@ -101,6 +102,37 @@ public class Application extends Controller {
     	}
     	
 		return ok(Json.toJson(Boolean.FALSE));    	
+    }
+    
+    public static Result verificationList(){
+    	return ok(verification.render());
+    }
+    
+    public static Result approveSignatures() {
+    	JsonNode jsonNode = request().body().asJson();
+    	
+    	List<JsonNode> list =  jsonNode.findValues("id");
+    	List<Long> ids = new ArrayList<Long>();
+    	for (JsonNode n : list){
+    		System.out.println(n.asLong());
+    		ids.add(n.asLong());
+    	}
+    	
+    	for (Long id: ids){
+    		SignatureModel signatureToApprove = SignatureModel.find.byId(id);
+    		if (signatureToApprove != null){
+    			signatureToApprove.isValid = true;
+    			signatureToApprove.update();
+    		}
+    	}
+    	
+    	return ok(jsonNode.findValues("id").toString());
+    }
+    
+    public static Result getNonValidSignatures() {
+    	Query<SignatureModel> signatureValidQuery = SignatureModel.find.where().eq("isValid", false).query();
+    	
+    	return ok(Json.toJson(signatureValidQuery.findList()));
     }
     
     private static void save(SignatureModel signature) {
