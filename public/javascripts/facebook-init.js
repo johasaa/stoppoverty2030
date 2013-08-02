@@ -4,7 +4,7 @@ $(document).ready(function(){
 		// appid prod: 502264383175234
 		// appid dev: 135311053344624
 	    FB.init({
-	      appId: '135311053344624',
+	      appId: '502264383175234',
 	      channelUrl: '/channel',
 	      status: true,
 	      xfbml: true
