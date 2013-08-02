@@ -57,16 +57,10 @@ $(document).ready(function(){
 		      },
 		      email: {
 		        required: true,
-		        email: true,		              	
-		      },
-		      organisation: {
-			        required: false,
-			        minlength: 2
+		        email: true	              	
 		      },
 		      groupName: {
-			        required: function(element) {
-			            return $("#organisation").val() == '';
-			        },
+			        required: true,
 		      		minlength: 2
 		      },
 		      numberOfSignatures: {
@@ -88,10 +82,54 @@ $(document).ready(function(){
 					email: "Your email must be of format: something@domain.com or similar"
 				},
 				groupName: {
-					required: "Please enter a group or an organisation. Both cannot be empty"
+					required: "Please enter a group name"
 				}
 			}
-		  });	
+		  });
+		
+		$('#signOrgForm').validate({
+		    rules: {
+		      firstName: {
+		        minlength: 2,
+		        required: true,
+		        "containsChars" : true
+		      },
+		      lastName: {
+		    	  minlength: 2,
+		    	  required: true,
+			      "containsChars" : true
+		      },
+		      email: {
+		        required: true,
+		        email: true,		              	
+		      },
+		      organisation: {
+			        required: true,
+		      		minlength: 2
+		      },
+		      numberOfSignatures: {
+			        required: true,
+			        minlength: 1,
+			        "containsNum" : true      	
+		      },
+		    },
+		    highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			},
+			messages: {
+				email: {
+					email: "Your email must be of format: something@domain.com or similar"
+				},
+				organisation: {
+					required: "pleas enter a organisation name"
+				}
+			}
+		  });
 	    
 			
 
