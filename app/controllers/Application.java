@@ -121,8 +121,9 @@ public class Application extends Controller {
         signature.save();        
     }
     
-    private static String getNumberOfSignatures() {
-    	List<SignatureModel> signatureList = SignatureModel.find.all();    	
+    private static String getNumberOfSignatures() {    	  
+    	Query<SignatureModel> signatureValidQuery = SignatureModel.find.where().eq("isValid", true).query();
+    	List<SignatureModel> signatureList = signatureValidQuery.findList();
     	Long signatureCount = 0L; 
     	for (SignatureModel m : signatureList){
     		signatureCount += m.numberOfSignatures;

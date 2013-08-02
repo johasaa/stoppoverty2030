@@ -45,8 +45,9 @@ public class SignatureModel extends Model{
 	public Boolean validate(){
 		if (isValid == null){
     		isValid = false;
-    		if (personalSignature
-    				|| (groupName != null && numberOfSignatures <= 100)){
+    		if (email != null 
+    				&& (personalSignature
+    						|| (groupName != null && numberOfSignatures <= 100))){
     			isValid = true;
     		}
     	}
