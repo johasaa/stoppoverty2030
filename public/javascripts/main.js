@@ -11,6 +11,12 @@ $(document).ready(function(){
 
 }); // end document.ready
 
+//public saveForm() {
+//	$.post("/saveSignater", $(this).serialize()).done(function(response){
+//		
+//	});
+//}
+
 function shareOnFacebook(){
 	
 	FB.getLoginStatus(function(response){
@@ -105,7 +111,7 @@ function doSign() {
 			console.log("doSign - getFBMeResponse: " +response);	
 			$.ajax({
 				type: 'POST',
-				url: '/saveSignature',
+				url: '/saveFacebook',
 				data: JSON.stringify(response),
 				dataType: 'json',
 				contentType: 'application/json',

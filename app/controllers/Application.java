@@ -46,16 +46,20 @@ public class Application extends Controller {
     
     public static Result saveSignature(){
     	Form<SignatureModel> signatureForm = Form.form(SignatureModel.class).bindFromRequest();
-    	if(signatureForm.hasErrors()) {
-            return badRequest(signNoFB.render());
-        } else {
-            save(signatureForm.get());
-        }
-    	return redirect(routes.Application.thankyou());
+    	    	
+        save(signatureForm.get());
+        
+    	return ok(Json.toJson(Boolean.TRUE));
     }
     
     public static Result saveGroup(){
-    	return saveSignature();
+    	Form<SignatureModel> signatureForm = Form.form(SignatureModel.class).bindFromRequest();
+    	System.out.println(signatureForm);
+    	if (signatureForm.get() != null){
+    		System.out.println((SignatureModel)signatureForm.get());
+    		save(signatureForm.get());
+    	}
+    	return ok(Json.toJson(Boolean.TRUE));
     }
     
     public static Result checkEmail(String email) {
@@ -149,7 +153,7 @@ public class Application extends Controller {
     		signature.providerName = "facebook";
     	}
         signature.registeredDate = new Date();
-        signature.validate();
+        signature.validateData();
         signature.save();        
     }
     

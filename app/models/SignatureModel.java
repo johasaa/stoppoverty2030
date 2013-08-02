@@ -42,11 +42,11 @@ public class SignatureModel extends Model{
 
 	public static Model.Finder<Long,SignatureModel> find = new Model.Finder<Long,SignatureModel>(Long.class, SignatureModel.class);
 	
-	public Boolean validate(){
+	public Boolean validateData(){
 		if (isValid == null){
     		isValid = false;
     		if (email != null 
-    				&& (personalSignature
+    				&& ((personalSignature != null && personalSignature)
     						|| (groupName != null && numberOfSignatures <= 100))){
     			isValid = true;
     		}
@@ -73,6 +73,10 @@ public class SignatureModel extends Model{
 		this.groupName = groupName;
 		this.numberOfSignatures = numberOfSignatures;
 		this.userId = userId;
+	}
+	
+	public SignatureModel() {
+		
 	}
 	
 }
