@@ -12,12 +12,27 @@ $(document).ready(function(){
 	    $('#loginbutton,#feedbutton').removeAttr('disabled');
 	    FB.getLoginStatus(function(response){
 	    	 if (response.status === 'connected') {
-	    		    checkBeforeSigning(response, true, true, false);
-	    		  } else if (response.status === 'not_authorized') {
-	    		     console.log("not_autorized by app");
-	    		  } else {
-	    			console.log("not logged into facebook");
-	    		  }
+    		 	FB.api('/me/picture', function(response){
+	 		        console.log(response.data);
+	 				var imgHTML = $('<img>').attr('src', response.data.url);				
+	 				$('.showFBInfo').append(imgHTML);	 				
+ 					FB.api("/me", function (response) {
+ 						console.log("getting profile data to check if signed: " +response);
+ 						
+ 						$.getJSON( "/checkEmail?email=" + response.email , function( data ) {
+ 							console.log("checking against db if user is already signed: " + data);
+ 							if (data !== true){
+ 				   				console.log(response.id + " has already signed this petition");
+ 				   				alreadySignedMessage(); 				   				
+ 				   			 }
+ 						});	 			 
+ 					});
+    		 	});	    		    
+	    	 } else if (response.status === 'not_authorized') {
+	    		    console.log("not_autorized by app " + response.data);   		   
+	    	 } else {
+	    			 console.log("not logged into facebook");
+	    	 }
 	    });
 	    FB.Event.subscribe('auth.authResponseChange', function(response) {
 	    	  console.log('The status of the session is: ' + response.status);

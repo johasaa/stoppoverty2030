@@ -11,8 +11,16 @@
     	<div class="tab-pane active" id="person">
     		<div>    			
     			<div class="showFBInfo"></div>
-    			<a class="uibutton large confirm " href="@routes.Application.index" id="signWithFB" onclick="signWithFacebook();">Sign with Facebook</a>
-    			<div id="thankyou">@tnxcomponent()</div>   						
+    			<a class="uibutton large confirm " href="#" id="signWithFB" onclick="signWithFacebook();">Sign with Facebook</a>
+    			<div id="receipt" class="hasSigned">
+	    			<div id="thankyou">    				
+	    				<p><strong>Thanks for signing!</strong></p>					    				
+	    			</div> 
+	    			<div id="thanksagain" class="hasSigned" >
+	    				<p><strong>We already had you in our records, but thanks again!</strong></p>
+	    			</div>    			
+	    			 @tnxcomponent() 
+    			 </div>						
     		</div>
 		    <form action="@routes.Application.saveSignature" id="signNoFBForm" class="form-horizontal">
 			  <fieldset id="form-div" >
