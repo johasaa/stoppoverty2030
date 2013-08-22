@@ -5,20 +5,19 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.codehaus.jackson.JsonNode;
-
 import models.SignatureModel;
 import models.StoppovertyFacebookUser;
+
+import org.codehaus.jackson.JsonNode;
+
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import securesocial.core.SocialUser;
-import securesocial.core.java.SecureSocial;
+import views.html.channel;
 import views.html.index;
 import views.html.signNoFB;
 import views.html.thankyou;
-import views.html.channel;
 import views.html.verification;
 
 import com.avaje.ebean.Query;
@@ -80,15 +79,15 @@ public class Application extends Controller {
     	return ok(Json.toJson(signatureList));    	
     }
     
-    public static Result checkSocialSignature(){
-    	SocialUser user = (SocialUser) SecureSocial.currentUser();
-    	Boolean hasSignedAlready = Boolean.FALSE;
-    	if (user != null){
-    		SignatureModel signatureModel = SignatureModel.find.where().eq("userId", user.id().id()).findUnique();
-    		hasSignedAlready = signatureModel != null;
-    	}
-    	return ok(Json.toJson(hasSignedAlready));
-    }
+//    public static Result checkSocialSignature(){
+//    	SocialUser user = (SocialUser) SecureSocial.currentUser();
+//    	Boolean hasSignedAlready = Boolean.FALSE;
+//    	if (user != null){
+//    		SignatureModel signatureModel = SignatureModel.find.where().eq("userId", user.id().id()).findUnique();
+//    		hasSignedAlready = signatureModel != null;
+//    	}
+//    	return ok(Json.toJson(hasSignedAlready));
+//    }
     
     public static Result saveJSONSignature() {
     	JsonNode jsonNode = request().body().asJson();

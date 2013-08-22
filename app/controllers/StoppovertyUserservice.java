@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import securesocial.core.Identity;
+import securesocial.core.IdentityId;
 import securesocial.core.SocialUser;
-import securesocial.core.UserId;
 import securesocial.core.java.BaseUserService;
 import securesocial.core.java.Token;
 
@@ -28,7 +28,7 @@ public class StoppovertyUserservice extends BaseUserService{
     public Identity doSave(Identity user) {
     	
     	SocialUser socialUser = (SocialUser)user;
-    	userMap.put(user.id().id(), socialUser);
+    	userMap.put(user.identityId().userId(), socialUser);
     
     	return socialUser;
     }
@@ -38,8 +38,8 @@ public class StoppovertyUserservice extends BaseUserService{
      * @return an Identity instance or null if no user matches the specified id
      */
     @Override
-    public Identity doFind(UserId userId) {        
-    	return userMap.get(userId.id());
+    public Identity doFind(IdentityId userId) {        
+    	return userMap.get(userId.userId());
     }
 
     /**
@@ -105,5 +105,6 @@ public class StoppovertyUserservice extends BaseUserService{
     public void doDeleteExpiredTokens() {
         // implement me
     }
+	
 
 }
