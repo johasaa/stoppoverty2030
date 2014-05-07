@@ -17,7 +17,8 @@ object ApplicationBuild extends Build {
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here
-    coffeescriptOptions := Seq("bare")      
+    coffeescriptOptions := Seq("bare"),   
+    javacOptions in Compile ++= Seq("-source", "1.6", "-target", "1.6")   
   )
 
 }

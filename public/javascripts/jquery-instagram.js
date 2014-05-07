@@ -53,6 +53,8 @@
           .append(innerHtml);
       }
 
+      var position = $('<p>').html('Location: ' + photo.location); 
+
       return $('<div>')
         .addClass('instagram-placeholder')
         .addClass('span1')

@@ -8,7 +8,7 @@ import java.util.List;
 import models.SignatureModel;
 import models.StoppovertyFacebookUser;
 
-import org.codehaus.jackson.JsonNode;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import play.data.Form;
 import play.libs.Json;
@@ -24,6 +24,8 @@ import com.avaje.ebean.Query;
 
 
 public class Application extends Controller {
+
+    
 	
 	public static Result index() {    	
         return ok(index.render("Stop Poverty 2030", getNumberOfSignatures()));
