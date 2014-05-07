@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/stoppoverty2030 -Dhttp.port=${PORT} ${JAVA_OPTS} -DapplyEvolutions.default=true -DapplyDownEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${DATABASE_URL}
+web: target/universal/stage/bin/stoppoverty -Dhttp.port=${PORT} ${JAVA_OPTS} -DapplyEvolutions.default=true -DapplyDownEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${DATABASE_URL}
